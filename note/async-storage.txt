@@ -1,3 +1,4 @@
+- import: import AsyncStorage from "@react-native-async-storage/async-storage";
 - setItem: usage: await AsyncStorage.setItem(key, JSON.stringify(value)); : lưu vào storage
 - getItem: usage: JSON.parse(await AsyncStorage.getItem(key) as any): lấy từ storage về
 - removeItem: usage: await AsyncStorage.removeItem(key): xóa item
