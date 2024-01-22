@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useContext } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet } from "react-native";
+import React from "react";
 import HomeStack from "./HomeStack";
 import AuthStack from "./AuthStack";
-import { UserContext } from "../store/context";
+import { useAppSelector } from "../store/redux";
+import { getUser } from "../controller/storage.controller";
 
 const RootStack = () => {
-	const { user } = useContext(UserContext);
-	return user.phoneNumber ? <HomeStack /> : <AuthStack />;
+	const user = useAppSelector((state) => state.user);
+	const isLoggedIn = !!getUser();
+	return user.phoneNumber || isLoggedIn ? <HomeStack /> : <AuthStack />;
 };
 
 export default RootStack;

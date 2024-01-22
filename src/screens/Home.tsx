@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import Card from "../components/Card";
 import { UserContext } from "../store/context";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
 	const navigation = useNavigation<any>();
@@ -40,6 +41,12 @@ const Home = () => {
 					navigation.navigate("Favorite");
 				}}
 				title="Favorite"
+			/>
+			<Button
+				title="View storage"
+				onPress={async () => {
+					console.log(await AsyncStorage.getAllKeys());
+				}}
 			/>
 		</View>
 	);
