@@ -4,15 +4,19 @@ import Card from "../components/Card";
 import { UserContext } from "../store/context";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAppDispatch, useAppSelector } from "../store/redux";
+import { removeFavorite, addFavorite } from "../store/redux/favorite.reducer";
 
 const Home = () => {
 	const navigation = useNavigation<any>();
-	const { addFavoriteList, removeFavoriteList, favoriteList } = useContext(UserContext);
+	const favourite = useAppSelector((state) => state.favourite);
+	const dispatch = useAppDispatch();
 	const favoriteHandler = (id: string) => {
-		if (favoriteList.includes(id)) {
-			removeFavoriteList(id);
+		if (favourite.includes(id)) {
+			// removeFavoriteList(id);
+			dispatch(removeFavorite(id));
 		} else {
-			addFavoriteList(id);
+			dispatch(addFavorite(id));
 		}
 		console.log("Success");
 	};

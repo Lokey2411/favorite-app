@@ -1,12 +1,14 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { UserContext } from "../../store/context";
+import { useAppDispatch, useAppSelector } from "../../store/redux";
 
 const FavoriteList = () => {
-	const { favoriteList } = useContext(UserContext);
+	const favourite = useAppSelector((state) => state.favourite);
+
 	return (
 		<View>
-			{favoriteList.map((item, index) => (
+			{favourite.map((item, index) => (
 				<Text key={index}>{item}</Text>
 			))}
 		</View>

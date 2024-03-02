@@ -6,7 +6,10 @@ import { useAppSelector } from "../store/redux";
 import { getUser } from "../controller/storage.controller";
 
 const RootStack = () => {
-	const user = useAppSelector((state) => state.user);
+	const user = {
+		phoneNumber: "",
+		email: "",
+	};
 	const isLoggedIn = !!getUser();
 	return user.phoneNumber || isLoggedIn ? <HomeStack /> : <AuthStack />;
 };
